@@ -18,27 +18,14 @@ const healthOptions = [
   { value: 'keto-friendly', label: 'Keto friendly' },
   { value: 'low-sugar', label: 'Low sugar' },
 ];
-const mealOptions = [
-  { value: 'Breakfast', label: 'Breakfast' },
-  { value: 'Lunch', label: 'Lunch' },
-  { value: 'Dinner', label: 'Dinner' },
-  { value: 'Snack', label: 'Snack' },
-  { value: 'Teatime', label: 'Teatime' },
-  // ... add more options as needed
-];
-const cuisineTypeOptions = [
-  { value: 'American', label: 'American' },
-  { value: 'Asian', label: 'Asian' },
-  { value: 'Italian', label: 'Italian' },
-  { value: 'Mexican', label: 'Mexican' },
-  { value: 'Chinese', label: 'Chinese' },
-  { value: 'French', label: 'French' },
-  { value: 'Indian', label: 'Indian' },
-  { value: 'Middle Eastern', label: 'Middle Eastern' },
-
-  // ... add more options as needed
-];
-
+// const mealOptions = [
+//   { value: 'Breakfast', label: 'Breakfast' },
+//   { value: 'Lunch', label: 'Lunch' },
+//   { value: 'Dinner', label: 'Dinner' },
+//   { value: 'Snack', label: 'Snack' },
+//   { value: 'Teatime', label: 'Teatime' },
+//   // ... add more options as needed
+// ];
 /* */
 /* */
 /* */
@@ -46,15 +33,21 @@ export default function CustomSearch() {
   const [foodTitle, setFoodTitle] = useState(null);
   const [selectedDiets, setSelectedDiets] = useState(null);
   const [healthLabel, setHealthLabel] = useState(null);
-  const [mealType, setMealTypes] = useState(null);
-  const [cuisineType, setCuisineType] = useState(null);
+  const [cuisine, setCuisine] = useState([]);
 
   const [recipes, setRecipes] = useState();
 
   let dietQry = '';
   let healthQry = '';
-  let mealTypeQry = '';
-  let cuisineTypeQry = '';
+  let cuisineQry = '';
+  const handleCheckbox = (e) => {
+    const value = e.target.value;
+    if (cuisine.includes(value)) {
+      setCuisine(cuisine.filter((option) => option !== value));
+    } else {
+      setCuisine([...cuisine, value]);
+    }
+  };
   const handleCustomSearch = async (e) => {
     e.preventDefault();
 
@@ -67,34 +60,38 @@ export default function CustomSearch() {
       healthLabel.map((label) => {
         healthQry += `&health=${label.value}`;
       });
-    mealType &&
-      mealType.map((meal) => {
-        mealTypeQry += `&mealType=${meal.value}`;
+    cuisine &&
+      cuisine.map((cuisine) => {
+        cuisineQry += `&cuisineType=${cuisine}`;
       });
-    cuisineType &&
-      cuisineType.map((cuisine) => {
-        cuisineTypeQry += `&cuisineType=${cuisine.value}`;
-      });
-    const customQry = foodQry + dietQry + mealTypeQry + cuisineTypeQry;
+    const customQry = foodQry + dietQry + healthQry + cuisineQry;
     console.log(customQry);
     const response = await fetch(`/api/recipes/search/${customQry}`);
     const data = await response.json();
     console.log(data);
     setRecipes(data);
   };
+  const cuisineType = [
+    { name: 'china', image: 'china.png' },
+    { name: 'france', image: 'france.png' },
+    { name: 'india', image: 'india.png' },
+    { name: 'japan', image: 'japan.png' },
+    { name: 'united-kingdom', image: 'united-kingdom.png' },
+    { name: 'united-states', image: 'united-states.png' },
+  ];
 
   return (
-    <div className=" p-4 w-2/4">
+    <div className="p-4 w-[400px]">
       <div>Random text slogan</div>
       <form onSubmit={handleCustomSearch} className="flex flex-col gap-3">
         <input
           type="text"
           onChange={(e) => setFoodTitle(e.target.value)}
           placeholder="chicken"
-          className="outline-gray-200 outline py-1 px-2 rounded-md"
+          className="py-2 px-2 border-2 rounded focus:outline-blue-600"
         />
-
         <Select
+          className="flex-1"
           defaultValue={selectedDiets}
           onChange={setSelectedDiets}
           options={dietOptions}
@@ -102,26 +99,32 @@ export default function CustomSearch() {
           placeholder="diet options"
         />
         <Select
+          className="flex-1"
           defaultValue={healthLabel}
           onChange={setHealthLabel}
           options={healthOptions}
           isMulti
           placeholder="health label"
         />
-        <Select
-          defaultValue={mealType}
-          onChange={setMealTypes}
-          options={mealOptions}
-          isMulti
-          placeholder="meal type"
-        />
-        <Select
-          defaultValue={cuisineType}
-          onChange={setCuisineType}
-          options={cuisineTypeOptions}
-          isMulti
-          placeholder="cuisine type"
-        />
+        <div className="flex gap-10 overflow-auto p-1">
+          {cuisineType.map((country) => {
+            return (
+              <div className="flex gap-1 ">
+                <input
+                  type="checkbox"
+                  name={country.name}
+                  value={country.name}
+                  onChange={handleCheckbox}
+                />
+                <img
+                  src={country.image}
+                  alt="china map"
+                  className="w-10 rounded-full"
+                />
+              </div>
+            );
+          })}
+        </div>
         <button className="bg-black text-white py-1 rounded-sm" type="submit">
           Search
         </button>

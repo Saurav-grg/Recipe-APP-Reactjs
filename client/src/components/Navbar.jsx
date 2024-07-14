@@ -82,7 +82,7 @@ function Navbar() {
                   key={index}
                   className={({ isActive }) => {
                     return (
-                      'my-1 text-blue-900 font-bold md:mx-4 md:my-0' +
+                      'my-1 text-accent font-bold md:mx-4 md:my-0' +
                       (!isActive
                         ? 'bg-white '
                         : 'bg-black underline underline-offset-8')
