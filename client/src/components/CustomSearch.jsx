@@ -18,6 +18,15 @@ const healthOptions = [
   { value: 'keto-friendly', label: 'Keto friendly' },
   { value: 'low-sugar', label: 'Low sugar' },
 ];
+const cuisineType = [
+  { name: 'china', image: 'china.png' },
+  { name: 'france', image: 'france.png' },
+  { name: 'india', image: 'india.png' },
+  { name: 'japan', image: 'japan.png' },
+  { name: 'united-kingdom', image: 'united-kingdom.png' },
+  { name: 'united-states', image: 'united-states.png' },
+];
+
 // const mealOptions = [
 //   { value: 'Breakfast', label: 'Breakfast' },
 //   { value: 'Lunch', label: 'Lunch' },
@@ -68,17 +77,9 @@ export default function CustomSearch() {
     console.log(customQry);
     const response = await fetch(`/api/recipes/search/${customQry}`);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setRecipes(data);
   };
-  const cuisineType = [
-    { name: 'china', image: 'china.png' },
-    { name: 'france', image: 'france.png' },
-    { name: 'india', image: 'india.png' },
-    { name: 'japan', image: 'japan.png' },
-    { name: 'united-kingdom', image: 'united-kingdom.png' },
-    { name: 'united-states', image: 'united-states.png' },
-  ];
 
   return (
     <div className="p-4 w-[400px]">
