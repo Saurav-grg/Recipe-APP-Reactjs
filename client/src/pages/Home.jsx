@@ -8,8 +8,8 @@ export default function Home() {
       <div className="flex justify-around items-center gap-10 bg-background">
         <CustomSearch />
         <Featured />
-        <MealTypes />
       </div>
+      <MealTypes />
     </main>
   );
 }

@@ -74,7 +74,7 @@ export default function CustomSearch() {
         cuisineQry += `&cuisineType=${cuisine}`;
       });
     const customQry = foodQry + dietQry + healthQry + cuisineQry;
-    console.log(customQry);
+    // console.log(customQry);
     const response = await fetch(`/api/recipes/search/${customQry}`);
     const data = await response.json();
     // console.log(data);
@@ -108,9 +108,9 @@ export default function CustomSearch() {
           placeholder="health label"
         />
         <div className="flex gap-10 overflow-auto p-1">
-          {cuisineType.map((country) => {
+          {cuisineType.map((country, i) => {
             return (
-              <div className="flex gap-1 ">
+              <div key={i} className="flex gap-1 ">
                 <input
                   type="checkbox"
                   name={country.name}
