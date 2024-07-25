@@ -24,23 +24,25 @@ export default function MealTypes() {
   // console.log(content);
   return (
     <div>
-      <div className="flex justify-around border-b py-4">
+      <div className="flex justify-around border-b cursor-pointer">
         {mealOptions.map((meal, i) => {
           return (
             <div
               key={i}
               onClick={() => updateTab(meal, i)}
-              className={tabs === i && ' '}
+              className={`py-4 px-4 ${
+                tabs === i && 'border-b-4 border-orange-400 bg-gray-200'
+              }`}
             >
               {meal}
             </div>
           );
         })}
       </div>
-      <div className="grid grid-cols-4 gap-y-6">
+      <div className="grid grid-cols-6 gap-y-6">
         {content &&
           content.map((hits, i) => {
-            if (i < 8) return <Card key={i} data={hits.recipe} />;
+            if (i < 12) return <Card key={i} data={hits.recipe} />;
           })}
       </div>
     </div>
