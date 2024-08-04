@@ -19,12 +19,12 @@ const healthOptions = [
   { value: 'low-sugar', label: 'Low sugar' },
 ];
 const cuisineType = [
-  { name: 'china', image: 'china.png' },
-  { name: 'france', image: 'france.png' },
-  { name: 'india', image: 'india.png' },
-  { name: 'japan', image: 'japan.png' },
-  { name: 'united-kingdom', image: 'united-kingdom.png' },
-  { name: 'united-states', image: 'united-states.png' },
+  { name: 'Chinese', image: 'china.png' },
+  { name: 'French', image: 'france.png' },
+  { name: 'Indian', image: 'india.png' },
+  { name: 'Japanese', image: 'japan.png' },
+  { name: 'British', image: 'united-kingdom.png' },
+  { name: 'American', image: 'united-states.png' },
 ];
 
 // const mealOptions = [
@@ -83,7 +83,9 @@ export default function CustomSearch() {
 
   return (
     <div className="p-4 w-[400px]">
-      <div>Random text slogan</div>
+      <div className="text-white text-2xl pb-4">
+        Random text slogan that is very good
+      </div>
       <form onSubmit={handleCustomSearch} className="flex flex-col gap-3">
         <input
           type="text"

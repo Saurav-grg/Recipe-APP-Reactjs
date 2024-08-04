@@ -14,7 +14,7 @@ export default function MealTypes() {
   useEffect(() => {
     const fetchRecipe = async () => {
       const response = await fetch(
-        `/api/recipes/search/&mealType=${selectedType}`
+        `/api/recipes/search/mealType=${selectedType}`
       );
       const data = await response.json();
       setContent(data);

@@ -15,10 +15,10 @@ export default function Card({ data }) {
         </div>
         <div className="px-2 pb-2">
           <p className=" h-14 pt-2 overflow-auto">{data.label}</p>
-          <div className="flex justify-around items-center">
+          <div className="flex gap-3 items-center">
             <div className="flex gap-1 text-gray-600">
-              <img src="calories.png" alt="kcal icon" className="w-6 " />
-              {Math.round(data.calories)}
+              {/* <img src="calories.png" alt="kcal icon" className="w-6 " /> */}
+              {Math.round(data.calories)} kcal
             </div>
             <div className="flex items-center gap-1">
               <FaRegClock />
