@@ -1,6 +1,18 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import Card from '../components/Card';
 export default function Recipes() {
+  const [content, setContent] = useState();
+
+  const queryString = window.location.search.substring(1);
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      const response = await fetch(`/api/recipes/search/${queryString}`);
+      const data = await response.json();
+      setContent(data);
+    };
+    fetchRecipe();
+  }, [queryString]);
+  // content && console.log(content);
   return (
     <>
       <div className="bg-purple-200">
@@ -10,7 +22,14 @@ export default function Recipes() {
           <div>calories</div>
         </div>
       </div>
-      <div>Resultes</div>
+      <div>Results</div>
+      <div className="grid grid-cols-6 gap-y-6">
+        {content
+          ? content.map((hits, i) => {
+              if (i < 12) return <Card key={i} data={hits.recipe} />;
+            })
+          : 'NO results'}
+      </div>
     </>
   );
 }

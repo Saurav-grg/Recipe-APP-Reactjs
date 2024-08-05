@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 
 const dietOptions = [
   { value: 'balanced', label: 'Balanced' },
-  { value: 'high-fibre', label: 'High Fibre' },
+  { value: 'high-fiber', label: 'High Fiber' },
   { value: 'high-protein', label: 'High protein' },
   { value: 'low-carb', label: 'Low Carb' },
   { value: 'low-fat', label: 'Low Fat' },
@@ -45,6 +46,7 @@ export default function CustomSearch() {
   const [cuisine, setCuisine] = useState([]);
 
   const [recipes, setRecipes] = useState();
+  const navigate = useNavigate();
 
   let dietQry = '';
   let healthQry = '';
@@ -75,10 +77,10 @@ export default function CustomSearch() {
       });
     const customQry = foodQry + dietQry + healthQry + cuisineQry;
     // console.log(customQry);
-    const response = await fetch(`/api/recipes/search/${customQry}`);
-    const data = await response.json();
+
     // console.log(data);
-    setRecipes(data);
+    // setRecipes(data);
+    navigate(`/recipes?${customQry}`);
   };
 
   return (
