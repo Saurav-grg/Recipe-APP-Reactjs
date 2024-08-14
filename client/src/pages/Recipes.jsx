@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../components/Card';
+import CardSkeleton from '../components/CardSkeleton';
+
 export default function Recipes() {
   const [content, setContent] = useState();
 
@@ -26,9 +28,9 @@ export default function Recipes() {
       <div className="grid grid-cols-6 gap-y-6">
         {content
           ? content.map((hits, i) => {
-              if (i < 12) return <Card key={i} data={hits.recipe} />;
+              if (i < 12) return <Card key={i} data={hits} />;
             })
-          : 'NO results'}
+          : Array.from({ length: 12 }).map((_, i) => <CardSkeleton key={i} />)}
       </div>
     </>
   );

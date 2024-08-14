@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getRecipes } = require('../controller/recipeControl');
+const { getRecipes, getRecipe } = require('../controller/recipeControl');
 
 router.get('/search/:query', getRecipes);
+router.get('/:id', getRecipe);
+
 module.exports = router;

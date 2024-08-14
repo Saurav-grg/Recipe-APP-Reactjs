@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
+import CardSkeleton from './CardSkeleton';
 
 export default function MealTypes() {
   const [tabs, setTabs] = useState(0);
@@ -12,6 +13,7 @@ export default function MealTypes() {
   }
   const mealOptions = ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Teatime'];
   useEffect(() => {
+    setContent(null);
     const fetchRecipe = async () => {
       const response = await fetch(
         `/api/recipes/search/mealType=${selectedType}`
@@ -40,10 +42,11 @@ export default function MealTypes() {
         })}
       </div>
       <div className="grid grid-cols-6 gap-y-6">
-        {content &&
-          content.map((hits, i) => {
-            if (i < 12) return <Card key={i} data={hits.recipe} />;
-          })}
+        {content
+          ? content.map((hits, i) => {
+              if (i < 12) return <Card key={i} data={hits} />;
+            })
+          : Array.from({ length: 12 }).map((_, i) => <CardSkeleton key={i} />)}
       </div>
     </div>
   );

@@ -10,6 +10,11 @@ export default {
         accent: '#f0cd48',
       },
     },
+    // keyframes: {
+    //   shimmer: {
+    //     '100%': { transform: 'translateX(100%)' },
+    //   },
+    // },
   },
   plugins: [],
 };

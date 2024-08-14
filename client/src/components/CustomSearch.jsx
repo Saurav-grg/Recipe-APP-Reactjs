@@ -45,12 +45,13 @@ export default function CustomSearch() {
   const [healthLabel, setHealthLabel] = useState(null);
   const [cuisine, setCuisine] = useState([]);
 
-  const [recipes, setRecipes] = useState();
+  // const [recipes, setRecipes] = useState();
   const navigate = useNavigate();
 
   let dietQry = '';
   let healthQry = '';
   let cuisineQry = '';
+
   const handleCheckbox = (e) => {
     const value = e.target.value;
     if (cuisine.includes(value)) {
