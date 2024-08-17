@@ -32,7 +32,7 @@ export default function MealTypes() {
   }, [tabs]);
 
   return (
-    <div>
+    <div className="max-w-[1250px] mx-auto">
       <div className="flex justify-around border-b cursor-pointer">
         {mealOptions.map((meal, i) => (
           <div
@@ -46,12 +46,17 @@ export default function MealTypes() {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-6 gap-y-6">
+      <div className="pb-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-2 justify-items-center">
         {content[selectedType]
           ? content[selectedType].hits
-              .slice(0, 12)
+              .slice(0, 10)
               .map((hit, i) => <Card key={i} data={hit} />)
-          : Array.from({ length: 12 }).map((_, i) => <CardSkeleton key={i} />)}
+          : Array.from({ length: 10 }).map((_, i) => <CardSkeleton key={i} />)}
+      </div>
+      <div className="w-28 mx-auto">
+        <button className="border px-1 py-2 border-accent text-accent font-semibold ">
+          show more...
+        </button>
       </div>
     </div>
   );

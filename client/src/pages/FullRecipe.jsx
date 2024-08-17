@@ -57,9 +57,11 @@ export default function FullRecipe() {
             <div className="border text-sm border-blue-500 py-1 px-2 rounded-xl">
               {recipeView.recipe.dishType}
             </div>
-            <div className="border text-sm border-red-600 text-red-700 py-1 px-2 rounded-xl">
-              {recipeView.recipe.cautions}
-            </div>
+            {recipeView.recipe.cautions && (
+              <div className="border text-sm border-red-600 text-red-700 py-1 px-2 rounded-xl">
+                {recipeView.recipe.cautions}
+              </div>
+            )}
           </div>
           <div>
             <div className="border-b-2 p-2 font-semibold">Ingredients</div>
