@@ -17,9 +17,14 @@ export default function Aboutus() {
             About <span className="text-indigo-600">Our Company</span>
           </h2>
           <p className="text-gray-700">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
-            commodi doloremque, fugiat illum magni minus nisi nulla numquam
-            obcaecati placeat quia, repellat tempore voluptatum.
+            Welcome to PickyEater! We are a team of food enthusiasts who are
+            passionate about helping people find the perfect recipe. Our mission
+            is to provide a platform where users can easily discover and share
+            recipes, as well as connect with other foodies who share similar
+            tastes and dietary needs. We believe that food should be enjoyable,
+            accessible, and tailored to individual preferences. That's why we're
+            dedicated to building a community that celebrates the diversity of
+            food and makes cooking and sharing meals a breeze.
           </p>
         </div>
       </div>

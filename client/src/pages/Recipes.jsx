@@ -65,6 +65,7 @@ export default function Recipes() {
 
   const fetchNextPage = async () => {
     if (content && content._links && content._links.next) {
+      // console.log('calling function...');
       try {
         setLoading(true);
         const response = await fetch(`${content._links.next.href}`);
@@ -91,6 +92,7 @@ export default function Recipes() {
     const documentHeight = document.documentElement.scrollHeight;
 
     if (scrollTop + windowHeight >= documentHeight - 100) {
+      // console.log('fetching next page...');
       fetchNextPage();
     }
   };

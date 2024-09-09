@@ -53,7 +53,12 @@ export default function MealTypes() {
         ))}
       </div>
       <div className="pb-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-2 justify-items-center">
-        {content[selectedType]
+        {/* {content[selectedType]
+          ? content[selectedType].hits
+              .slice(0, 10)
+              .map((hit, i) => <Card key={i} data={hit} />)
+          : Array.from({ length: 10 }).map((_, i) => <CardSkeleton key={i} />)} */}
+        {content[selectedType]?.hits?.length
           ? content[selectedType].hits
               .slice(0, 10)
               .map((hit, i) => <Card key={i} data={hit} />)

@@ -14,14 +14,20 @@ export default function FullRecipe() {
     fetchRecipe();
   }, []);
 
-  // recipeView && console.log(recipeView.recipe.ingredientLines[1]);
+  // recipeView && console.log(recipeView.recipe.images.LARGE.url);
   if (recipeView)
     return (
       <div className="flex gap-10 max-w-[1150px] mx-auto pt-6">
         <div>
           <img
             className="rounded shadow-xl"
-            src={recipeView.recipe.images.LARGE.url}
+            src={
+              recipeView.recipe.images.LARGE
+                ? recipeView.recipe.images.LARGE.url
+                : recipeView.recipe.images.THUMBNAIL
+                ? recipeView.recipe.images.THUMBNAIL.url
+                : recipeView.recipe.images.REGULAR.url
+            }
             alt="image of the food"
           />
         </div>
@@ -29,7 +35,9 @@ export default function FullRecipe() {
           <div className="text-3xl font-semibold">
             {recipeView.recipe.label}
           </div>
-          <footer>by {recipeView.recipe.source}</footer>
+          <footer>
+            by {recipeView.recipe.source ? recipeView.recipe.source : 'Unknown'}
+          </footer>
           <div className="flex text-center mx-auto ">
             <div className="  px-10 py-4 border-r-2 border-gray-400">
               <div className="text-3xl font-semibold">
@@ -59,7 +67,7 @@ export default function FullRecipe() {
             </div>
             {recipeView.recipe.cautions && (
               <div className="border text-sm border-red-600 text-red-700 py-1 px-2 rounded-xl">
-                {recipeView.recipe.cautions}
+                {recipeView.recipe.cautions ? recipeView.recipe.cautions : ''}
               </div>
             )}
           </div>
