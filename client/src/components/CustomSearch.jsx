@@ -86,8 +86,8 @@ export default function CustomSearch() {
 
   return (
     <div className="p-4 w-[400px]">
-      <div className="text-white text-2xl pb-4">
-        Random text slogan that is very good
+      <div className="text-background font-semibold text-2xl pb-4">
+        Customize Your Culinary Experience with Recipes that Fit Your Lifestyle.
       </div>
       <form onSubmit={handleCustomSearch} className="flex flex-col gap-3">
         <input
@@ -131,7 +131,10 @@ export default function CustomSearch() {
             );
           })}
         </div>
-        <button className="bg-black text-white py-1 rounded-sm" type="submit">
+        <button
+          className="bg-black text-background py-1 rounded-sm hover:text-gray-300 active:scale-105"
+          type="submit"
+        >
           Search
         </button>
       </form>

@@ -4,7 +4,7 @@ require('dotenv').config();
 const getRecipes = async (req, res) => {
   try {
     const { query } = req.params;
-    const url = `https://api.edamam.com/api/recipes/v2?type=public&${query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}`;
+    const url = `https://api.edamam.com/api/recipes/v2?type=public&${query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}&random=true`;
     //&random=true&field=externalId&field=uri&field=image&field=label&field=images&field=calories&field=totalTime
     console.log(url);
     const response = await axios.get(url);

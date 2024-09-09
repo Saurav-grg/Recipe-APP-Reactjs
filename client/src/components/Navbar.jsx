@@ -8,6 +8,7 @@ function Navbar() {
   const pages = [
     { name: 'Home', path: '/' },
     { name: 'Recipes', path: '/recipes' },
+    { name: 'About us', path: '/aboutus' },
   ];
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,7 +18,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className=" max-h-[210px] min-h[50px] bg-light z-10 py-2">
+      <nav className=" max-h-[210px] min-h[50px] bg-white shadow-lg z-10 py-2">
         <div className="px-6 py-3 mx-auto md:flex  md:items-center justify-around">
           <div className="flex items-center ">
             {/* Mobile menu button 3line btn  */}
@@ -56,7 +57,7 @@ function Navbar() {
                   "
                 href="/"
               >
-                BhokLagyo
+                PickyEater
               </a>
             </div>
             <div className="absolute md:right-24 right-5">

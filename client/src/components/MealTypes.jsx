@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import CardSkeleton from './CardSkeleton';
+import { useNavigate } from 'react-router-dom';
 
 export default function MealTypes() {
   const [tabs, setTabs] = useState(0);
   const [selectedType, setSelectedType] = useState('Breakfast');
   const [content, setContent] = useState({}); // Initialize content as an object
+  const navigate = useNavigate();
 
   const mealOptions = ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Teatime'];
 
@@ -31,9 +33,13 @@ export default function MealTypes() {
     fetchRecipe();
   }, [tabs]);
 
+  const handleClick = (str) => {
+    const qry = `&mealType=${str}`;
+    navigate(`/recipes?${qry}`);
+  };
   return (
-    <div className="max-w-[1250px] mx-auto">
-      <div className="flex justify-around border-b cursor-pointer">
+    <div className="max-w-[1250px] mx-auto pb-4">
+      <div className="flex justify-around border-b text-accent font-semibold  cursor-pointer">
         {mealOptions.map((meal, i) => (
           <div
             key={i}
@@ -54,7 +60,10 @@ export default function MealTypes() {
           : Array.from({ length: 10 }).map((_, i) => <CardSkeleton key={i} />)}
       </div>
       <div className="w-28 mx-auto">
-        <button className="border px-1 py-2 border-accent text-accent font-semibold ">
+        <button
+          onClick={() => handleClick(selectedType)}
+          className="border px-1 py-2 border-accent text-accent font-semibold "
+        >
           show more...
         </button>
       </div>

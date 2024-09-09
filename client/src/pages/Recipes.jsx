@@ -15,11 +15,13 @@ export default function Recipes() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        setLoading(true);
-        const response = await fetch(`/api/recipes/search/${queryString}`);
-        const data = await response.json();
-        setContent(data);
-        setFilteredContent(data); // Initially, filtered content is the same as content
+        if (queryString) {
+          setLoading(true);
+          const response = await fetch(`/api/recipes/search/${queryString}`);
+          const data = await response.json();
+          setContent(data);
+          setFilteredContent(data); // Initially, filtered content is the same as content
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -101,19 +103,23 @@ export default function Recipes() {
   }, [content]);
 
   return (
-    <div className="max-w-[1150px] mx-auto">
+    <div className="max-w-[1150px] mx-auto flex flex-col gap-6">
       <form
-        className="bg-purple-200"
+        className="border-b-2 shadow-xl p-4"
         onSubmit={(e) => {
           e.preventDefault();
           handleFilter();
         }}
       >
-        <div>Filter</div>
-        <div className="flex">
-          <div>
+        <div className="flex gap-8">
+          <div className="p-2 border rounded bg-white text-accent border-accent">
+            Filters
+          </div>
+
+          <div className=" bg-white text-accent  rounded px-2 py-1">
             Cooking Time
             <select
+              className="border border-accent text-green-700 font-normal ml-2 rounded-md mt-1"
               name="time"
               id="time"
               onChange={(e) => setCookingTime(e.target.value)}
@@ -125,9 +131,10 @@ export default function Recipes() {
               <option value="61">More than 1 hour</option>
             </select>
           </div>
-          <div>
+          <div className="bg-white text-accent  rounded px-2 py-1">
             Calories
             <select
+              className="border border-accent text-green-700 font-normal ml-2 rounded-md mt-1"
               name="calories"
               id="calories"
               onChange={(e) => setCalories(e.target.value)}
@@ -139,15 +146,44 @@ export default function Recipes() {
               <option value="1200">More than 1200</option>
             </select>
           </div>
-          <button type="submit">Apply Filter</button>
+          <button
+            className="bg-accent text-white px-2 py-2 font-semibold rounded  hover:shadow-lg active:opa"
+            type="submit"
+          >
+            Apply Filter
+          </button>
         </div>
       </form>
 
-      <div>Results</div>
+      <div className="font-semibold text-xl text-green-500 underline">
+        Results
+      </div>
       <div className="grid grid-cols-5 gap-y-6 pb-10">
-        {filteredContent
+        {/* { filteredContent
           ? filteredContent.hits.map((hit, i) => <Card key={i} data={hit} />)
-          : Array.from({ length: 20 }).map((_, i) => <CardSkeleton key={i} />)}
+          : Array.from({ length: 20 }).map((_, i) => <CardSkeleton key={i} />)} */}
+        {/* {loading ? (
+          Array.from({ length: 20 }).map((_, i) => <CardSkeleton key={i} />)
+        ) : filteredContent ? (
+          filteredContent.hits.map((hit, i) => {
+            return <Card key={i} data={hit} />;
+          })
+        ) : queryString ? (
+          <div>Loading recipes...</div>
+        ) : (
+          <div>Enter a search query to see results.</div>
+        )} */}
+        {queryString ? (
+          filteredContent ? (
+            filteredContent.hits.map((hit, i) => <Card key={i} data={hit} />)
+          ) : (
+            Array.from({ length: 20 }).map((_, i) => <CardSkeleton key={i} />)
+          )
+        ) : (
+          <div className="text-red-500 w-[350px] bg-red-100 p-2 rounded">
+            Enter a search query to see results !!!
+          </div>
+        )}
       </div>
 
       {loading && (

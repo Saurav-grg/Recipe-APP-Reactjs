@@ -5,7 +5,7 @@ import HeroImage from '../components/HeroImage';
 export default function Home() {
   return (
     <main className="">
-      <div className="flex justify-around items-center gap-10 bg-gray-800 rounded-2xl">
+      <div className="flex justify-around items-center gap-10 bg-gray-800 rounded-lg">
         <CustomSearch />
         <HeroImage />
       </div>

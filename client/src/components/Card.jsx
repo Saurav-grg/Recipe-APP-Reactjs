@@ -7,9 +7,16 @@ export default function Card({ data }) {
   // console.log(id);
   if (data) {
     const href = data._links.self.href;
-    // console.log(data);
     const id = href.split('/v2/')[1].split('?')[0];
-
+    function formatTime(totalMinutes) {
+      if (totalMinutes < 60) {
+        return `${totalMinutes} minutes`;
+      } else {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
+      }
+    }
     return (
       // <div>HEllo</div>
       <Link to={`/recipes/${id}`}>
@@ -30,9 +37,9 @@ export default function Card({ data }) {
                 {/* <img src="calories.png" alt="kcal icon" className="w-6 " /> */}
                 {Math.round(data.recipe.calories)} kcal
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 to-gray-600">
                 <FaRegClock />
-                {data.recipe.totalTime} minutes
+                {formatTime(data.recipe.totalTime)}
               </div>
             </div>
           </div>

@@ -4,17 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#f9f8fe',
+        background: '#f4f2ff',
         primary: '#15ed6f',
         secondary: '#f8a192',
         accent: '#f0cd48',
       },
     },
-    // keyframes: {
-    //   shimmer: {
-    //     '100%': { transform: 'translateX(100%)' },
-    //   },
-    // },
   },
   plugins: [],
 };
